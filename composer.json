@@ -1,0 +1,25 @@
+{
+    "name": "antoinelemaire/taleez-php",
+    "description": "Taleez API client built on top of Guzzle 6",
+    "keywords": ["taleez", "taleez.com", "api", "guzzle"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "AntoineLemaire",
+            "homepage": "https://github.com/AntoineLemaire"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Taleez\\": ["src"]
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "php": ">= 5.6",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    }
+}
