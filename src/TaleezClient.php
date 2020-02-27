@@ -3,25 +3,57 @@
 namespace Taleez;
 
 use GuzzleHttp\Client;
-use Taleez\Endpoints\Job;
 use function GuzzleHttp\Psr7\stream_for;
 use Psr\Http\Message\ResponseInterface;
+use Taleez\Endpoints\Association;
+use Taleez\Endpoints\Candidate;
+use Taleez\Endpoints\Documents;
+use Taleez\Endpoints\Job;
+use Taleez\Endpoints\Pool;
+use Taleez\Endpoints\Property;
+use Taleez\Endpoints\Recruiter;
 
 class TaleezClient
 {
-    const BASE_URI = 'api.taleez.com';
+    const BASE_URI = 'api.taleez.com/0';
+
+    /*******************
+     *    ENDPOINTS    *
+     *******************/
+
+    /** @var Association $association */
+    public $association;
+
+    /** @var Candidate $candidate */
+    public $candidate;
+
+    /** @var Documents $document */
+    public $documents;
+
+    /** @var Job $job */
+    public $job;
+
+    /** @var Pool $pool */
+    public $pool;
+
+    /** @var Property $property */
+    public $property;
+
+    /** @var Recruiter $recruiter */
+    public $recruiter;
+
+    /*******************
+     *    CONFIG       *
+     *******************/
+
+    /** @var string API public key */
+    private $apiKey;
+
+    /** @var string API secret key */
+    private $apiSecret;
 
     /** @var Client $httpClient */
     private $httpClient;
-
-    /** @var string API public key */
-    protected $apiKey;
-
-    /** @var string API secret key */
-    protected $apiSecret;
-
-    /** @var Job $calls */
-    public $job;
 
     /**
      * TaleezClient constructor.
@@ -32,23 +64,22 @@ class TaleezClient
     public function __construct($apiKey, $apiSecret)
     {
         $this->setDefaultClient();
-        $this->job = new Job($this);
-
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
-    }
 
-    private function setDefaultClient()
-    {
-        $this->httpClient = new Client();
+        $this->association = new Association($this);
+        $this->candidate = new Candidate($this);
+        $this->documents = new Documents($this);
+        $this->job = new Job($this);
+        $this->pool = new Pool($this);
+        $this->property = new Property($this);
+        $this->recruiter = new Recruiter($this);
     }
 
     /**
      * Sets GuzzleHttp client.
-     *
-     * @param Client $client
      */
-    public function setClient($client)
+    public function setClient(Client $client)
     {
         $this->httpClient = $client;
     }
@@ -56,18 +87,15 @@ class TaleezClient
     /**
      * Sends POST request to Taleez API.
      *
-     * @param string $endpoint
-     * @param array  $datas
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return mixed
      */
-    public function post($endpoint, $datas = [])
+    public function post(string $endpoint, array $datas = [])
     {
         $response = $this->httpClient->request('POST', $this->getUri().$endpoint, [
             'json' => $datas,
-            'headers' => $this->getHeaders(),
+            'headers' => $this->getAuthHeaders(),
         ]);
 
         return $this->handleResponse($response);
@@ -76,18 +104,15 @@ class TaleezClient
     /**
      * Sends PUT request to Taleez API.
      *
-     * @param string $endpoint
-     * @param array  $datas
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return mixed
      */
-    public function put($endpoint, $datas = [])
+    public function put(string $endpoint, array $datas = [])
     {
         $response = $this->httpClient->request('PUT', $this->getUri().$endpoint, [
             'json' => $datas,
-            'headers' => $this->getHeaders(),
+            'headers' => $this->getAuthHeaders(),
         ]);
 
         return $this->handleResponse($response);
@@ -96,36 +121,32 @@ class TaleezClient
     /**
      * Sends DELETE request to Taleez API.
      *
-     * @param string $endpoint
-     * @param array  $datas
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return mixed
      */
-    public function delete($endpoint, $datas = [])
+    public function delete(string $endpoint, array $datas = [])
     {
         $response = $this->httpClient->request('DELETE', $this->getUri().$endpoint, [
             'json' => $datas,
-            'headers' => $this->getHeaders(),
+            'headers' => $this->getAuthHeaders(),
         ]);
 
         return $this->handleResponse($response);
     }
 
     /**
-     * @param string $endpoint
-     * @param array  $$datas
+     * Sends GET request to Taleez API.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return mixed
      */
-    public function get($endpoint, $datas = [])
+    public function get(string $endpoint, array $datas = [])
     {
         $response = $this->httpClient->request('GET', $this->getUri().$endpoint, [
             'query' => $datas,
-            'headers' => $this->getHeaders(),
+            'headers' => $this->getAuthHeaders(),
         ]);
 
         return $this->handleResponse($response);
@@ -136,7 +157,7 @@ class TaleezClient
      *
      * @return array
      */
-    public function getHeaders()
+    public function getAuthHeaders()
     {
         $headers = [
             'Accept' => 'application/json',
@@ -161,6 +182,11 @@ class TaleezClient
     public function getUri()
     {
         return 'https://'.self::BASE_URI.'/';
+    }
+
+    private function setDefaultClient()
+    {
+        $this->httpClient = new Client();
     }
 
     /**

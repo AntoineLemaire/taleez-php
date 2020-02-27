@@ -16,10 +16,8 @@ class Job
 
     /**
      * Job constructor.
-     *
-     * @param TaleezClient $client
      */
-    public function __construct($client)
+    public function __construct(TaleezClient $client)
     {
         $this->client = $client;
     }
@@ -27,14 +25,17 @@ class Job
     /**
      * List all jobs in your company.
      *
-     * @param array $options
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return mixed
      */
-    public function get($options = [])
+    public function list(array $options = [], $page = 0, $pageSize = 100)
     {
+        $options = array_merge($options, [
+            'page' => $page,
+            'pageSize' => $pageSize,
+        ]);
+
         return $this->client->get(self::BASE_ENDPOINT, $options);
     }
 
@@ -47,8 +48,8 @@ class Job
      *
      * @return mixed
      */
-    public function filters()
+    public function count()
     {
-        return $this->client->get(self::BASE_ENDPOINT.'/filter');
+        return $this->client->get(self::BASE_ENDPOINT.'/filters');
     }
 }

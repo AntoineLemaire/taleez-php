@@ -6,9 +6,14 @@ $finder = PhpCsFixer\Finder::create()
 
 return PhpCsFixer\Config::create()
     ->setRules([
-        '@Symfony'               => true,
-        'array_syntax'           => ['syntax' => 'short'],
-        'phpdoc_order'           => true,
+        '@Symfony'                     => true,
+        'array_syntax'                 => ['syntax' => 'short'],
+        'array_indentation'            => true,
+        'ordered_class_elements'       => true,
+        'phpdoc_order'                 => true,
+        'ordered_imports'              => true,
+        'phpdoc_to_comment'            => false,
+        'blank_line_after_opening_tag' => false,
     ])
     ->setFinder($finder)
     ;
