@@ -1,6 +1,6 @@
 <?php
 
-namespace Taleez\Endpoints;
+namespace Taleez\Endpoint;
 
 use Taleez\TaleezClient;
 

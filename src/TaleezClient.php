@@ -5,13 +5,13 @@ namespace Taleez;
 use GuzzleHttp\Client;
 use function GuzzleHttp\Psr7\stream_for;
 use Psr\Http\Message\ResponseInterface;
-use Taleez\Endpoints\Association;
-use Taleez\Endpoints\Candidate;
-use Taleez\Endpoints\Documents;
-use Taleez\Endpoints\Job;
-use Taleez\Endpoints\Pool;
-use Taleez\Endpoints\Property;
-use Taleez\Endpoints\Recruiter;
+use Taleez\Endpoint\Association;
+use Taleez\Endpoint\Candidate;
+use Taleez\Endpoint\Documents;
+use Taleez\Endpoint\Job;
+use Taleez\Endpoint\Pool;
+use Taleez\Endpoint\Property;
+use Taleez\Endpoint\Recruiter;
 
 class TaleezClient
 {
