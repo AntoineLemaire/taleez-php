@@ -40,6 +40,30 @@ class Job
     }
 
     /**
+     * Get details of a job.
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return mixed
+     */
+    public function getDetails($jobId)
+    {
+        return $this->client->get(self::BASE_ENDPOINT.'/'.$jobId);
+    }
+
+    /**
+     * Get questions of a job.
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return mixed
+     */
+    public function getQuestions($jobId)
+    {
+        return $this->client->get(self::BASE_ENDPOINT.'/'.$jobId.'/questions');
+    }
+
+    /**
      * Count all jobs and count jobs by filter values.
      *
      * @param array $options
