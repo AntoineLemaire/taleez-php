@@ -6,15 +6,15 @@ namespace Taleez\Endpoint;
 
 use Taleez\TaleezClient;
 
-class Recruiter
+class Recruiters
 {
-    const BASE_ENDPOINT = 'recruiter';
+    const BASE_ENDPOINT = 'recruiters';
 
     /** @var TaleezClient */
     private $client;
 
     /**
-     * Recruiter constructor.
+     * Recruiters constructor.
      */
     public function __construct(TaleezClient $client)
     {

@@ -6,12 +6,12 @@ use GuzzleHttp\Client;
 use function GuzzleHttp\Psr7\stream_for;
 use Psr\Http\Message\ResponseInterface;
 use Taleez\Endpoint\Association;
-use Taleez\Endpoint\Candidate;
+use Taleez\Endpoint\Candidates;
 use Taleez\Endpoint\Documents;
-use Taleez\Endpoint\Job;
-use Taleez\Endpoint\Pool;
-use Taleez\Endpoint\Property;
-use Taleez\Endpoint\Recruiter;
+use Taleez\Endpoint\Jobs;
+use Taleez\Endpoint\Pools;
+use Taleez\Endpoint\Properties;
+use Taleez\Endpoint\Recruiters;
 
 class TaleezClient
 {
@@ -21,26 +21,23 @@ class TaleezClient
      *    ENDPOINTS    *
      *******************/
 
-    /** @var Association $association */
-    public $association;
-
-    /** @var Candidate $candidate */
-    public $candidate;
+    /** @var Candidates $candidate */
+    public $candidates;
 
     /** @var Documents $document */
     public $documents;
 
-    /** @var Job $job */
-    public $job;
+    /** @var Jobs $job */
+    public $jobs;
 
-    /** @var Pool $pool */
-    public $pool;
+    /** @var Pools $pool */
+    public $pools;
 
-    /** @var Property $property */
-    public $property;
+    /** @var Properties $properties */
+    public $properties;
 
-    /** @var Recruiter $recruiter */
-    public $recruiter;
+    /** @var Recruiters $recruiter */
+    public $recruiters;
 
     /*******************
      *    CONFIG       *
@@ -67,13 +64,12 @@ class TaleezClient
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
 
-        $this->association = new Association($this);
-        $this->candidate = new Candidate($this);
+        $this->candidates = new Candidates($this);
         $this->documents = new Documents($this);
-        $this->job = new Job($this);
-        $this->pool = new Pool($this);
-        $this->property = new Property($this);
-        $this->recruiter = new Recruiter($this);
+        $this->jobs = new Jobs($this);
+        $this->pools = new Pools($this);
+        $this->properties = new Properties($this);
+        $this->recruiters = new Recruiters($this);
     }
 
     /**

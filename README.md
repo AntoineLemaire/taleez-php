@@ -31,11 +31,8 @@ use Taleez\TaleezClient;
 
 $client = new TaleezClient(apiKey, apiSecret);
 
-// Link a candidate to a pool or a job
-$client->association->link(12785, 1338, 1339);
-
 // List all jobs in your company
-$client->candidate->add([
+$client->candidates->add([
     'firstName' => 'John',
     'lastName' => 'Doe',
     'mail' => 'john.doe@gmail.com',
@@ -46,7 +43,7 @@ $client->candidate->add([
 ]);
 
 // Update candidate properties values
-$client->candidate->update(
+$client->candidates->update(
     12785,
     [
         [
@@ -72,18 +69,18 @@ $client->candidate->update(
 $client->documents->add(1337, 'VGhpcyBpcyBteSByZXN1bWU=', true);
 
 // List all jobs in your company
-$client->job->list();
+$client->jobs->list();
 
 // Count all jobs and count jobs by filter values (with at least one job)
-$client->job->count();
+$client->jobs->count();
 
 // List all pools in your company
-$client->pool->list();
+$client->pools->list();
 
 // List available candidate properties in your company
-$client->property->list();
+$client->properties->list();
 
 // List all recruiters in your company
-$client->recruiter->list();
+$client->recruiters->list();
 
 ```

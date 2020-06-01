@@ -4,15 +4,15 @@ namespace Taleez\Endpoint;
 
 use Taleez\TaleezClient;
 
-class Property
+class Pools
 {
-    const BASE_ENDPOINT = 'property';
+    const BASE_ENDPOINT = 'pools';
 
     /** @var TaleezClient */
     private $client;
 
     /**
-     * Property constructor.
+     * Pools constructor.
      */
     public function __construct(TaleezClient $client)
     {
@@ -20,7 +20,7 @@ class Property
     }
 
     /**
-     * List available candidate properties in your company.
+     * List all pools in your company.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
@@ -31,6 +31,20 @@ class Property
         return $this->client->get(self::BASE_ENDPOINT, [
             'page' => $page,
             'pageSize' => $pageSize,
+        ]);
+    }
+
+    /**
+     * Add candidates to a pool.
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return mixed
+     */
+    public function add($poolId, array $candidatesIds)
+    {
+        return $this->client->get(sprintf(self::BASE_ENDPOINT.'/%s/candidates', $poolId), [
+            'candidateIds' => $candidatesIds,
         ]);
     }
 }

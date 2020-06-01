@@ -4,15 +4,15 @@ namespace Taleez\Endpoint;
 
 use Taleez\TaleezClient;
 
-class Pool
+class Properties
 {
-    const BASE_ENDPOINT = 'pool';
+    const BASE_ENDPOINT = 'properties';
 
     /** @var TaleezClient */
     private $client;
 
     /**
-     * Pool constructor.
+     * Properties constructor.
      */
     public function __construct(TaleezClient $client)
     {
@@ -20,7 +20,7 @@ class Pool
     }
 
     /**
-     * List all pools in your company.
+     * List available candidate properties in your company.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *

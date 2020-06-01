@@ -5,17 +5,17 @@ namespace Taleez\Endpoint;
 use Taleez\TaleezClient;
 
 /**
- * Class Job.
+ * Class Jobs.
  */
-class Job
+class Jobs
 {
-    const BASE_ENDPOINT = 'job';
+    const BASE_ENDPOINT = 'jobs';
 
     /** @var TaleezClient */
     private $client;
 
     /**
-     * Job constructor.
+     * Jobs constructor.
      */
     public function __construct(TaleezClient $client)
     {
