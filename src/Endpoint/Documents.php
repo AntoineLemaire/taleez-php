@@ -2,6 +2,7 @@
 
 namespace Taleez\Endpoint;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Taleez\TaleezClient;
 
 class Documents
@@ -22,7 +23,7 @@ class Documents
     /**
      * Add a document.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */

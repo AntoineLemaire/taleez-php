@@ -1,9 +1,8 @@
 <?php
 
-
 namespace Taleez\Endpoint;
 
-
+use GuzzleHttp\Exception\GuzzleException;
 use Taleez\TaleezClient;
 
 class Recruiters
@@ -22,9 +21,9 @@ class Recruiters
     }
 
     /**
-     * List all recruiters in your company
+     * List all recruiters in your company.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */

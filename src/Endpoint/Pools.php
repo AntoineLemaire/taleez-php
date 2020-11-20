@@ -2,6 +2,7 @@
 
 namespace Taleez\Endpoint;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Taleez\TaleezClient;
 
 class Pools
@@ -22,7 +23,7 @@ class Pools
     /**
      * List all pools in your company.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -37,7 +38,7 @@ class Pools
     /**
      * Add candidates to a pool.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */

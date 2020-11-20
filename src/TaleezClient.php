@@ -3,9 +3,9 @@
 namespace Taleez;
 
 use GuzzleHttp\Client;
-use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\ResponseInterface;
-use Taleez\Endpoint\Association;
 use Taleez\Endpoint\Candidates;
 use Taleez\Endpoint\Documents;
 use Taleez\Endpoint\Jobs;
@@ -21,22 +21,22 @@ class TaleezClient
      *    ENDPOINTS    *
      *******************/
 
-    /** @var Candidates $candidate */
+    /** @var Candidates */
     public $candidates;
 
-    /** @var Documents $document */
+    /** @var Documents */
     public $documents;
 
-    /** @var Jobs $job */
+    /** @var Jobs */
     public $jobs;
 
-    /** @var Pools $pool */
+    /** @var Pools */
     public $pools;
 
-    /** @var Properties $properties */
+    /** @var Properties */
     public $properties;
 
-    /** @var Recruiters $recruiter */
+    /** @var Recruiters */
     public $recruiters;
 
     /*******************
@@ -49,7 +49,7 @@ class TaleezClient
     /** @var string API secret key */
     private $apiSecret;
 
-    /** @var Client $httpClient */
+    /** @var Client */
     private $httpClient;
 
     /**
@@ -83,7 +83,7 @@ class TaleezClient
     /**
      * Sends POST request to Taleez API.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -100,7 +100,7 @@ class TaleezClient
     /**
      * Sends PUT request to Taleez API.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -117,7 +117,7 @@ class TaleezClient
     /**
      * Sends DELETE request to Taleez API.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -134,7 +134,7 @@ class TaleezClient
     /**
      * Sends GET request to Taleez API.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -186,15 +186,12 @@ class TaleezClient
     }
 
     /**
-     * @param ResponseInterface $response
-     *
      * @return mixed
      */
     private function handleResponse(ResponseInterface $response)
     {
-        $stream = stream_for($response->getBody());
-        $data = json_decode($stream);
+        $stream = Utils::streamFor($response->getBody());
 
-        return $data;
+        return json_decode($stream);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Taleez\Endpoint;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Taleez\TaleezClient;
 
 /**
@@ -25,7 +26,7 @@ class Jobs
     /**
      * List all jobs in your company.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -42,7 +43,7 @@ class Jobs
     /**
      * Get details of a job.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -54,7 +55,7 @@ class Jobs
     /**
      * Get questions of a job.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -68,7 +69,7 @@ class Jobs
      *
      * @param array $options
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */

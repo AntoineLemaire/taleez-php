@@ -2,6 +2,7 @@
 
 namespace Taleez\Endpoint;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Taleez\TaleezClient;
 
 class Properties
@@ -22,7 +23,7 @@ class Properties
     /**
      * List available candidate properties in your company.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */

@@ -2,6 +2,7 @@
 
 namespace Taleez\Endpoint;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Taleez\TaleezClient;
 
 class Candidates
@@ -20,9 +21,9 @@ class Candidates
     }
 
     /**
-     * Search candidates
+     * Search candidates.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -50,7 +51,7 @@ class Candidates
      *            "recruiterId": 5489
      *            }
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -64,7 +65,7 @@ class Candidates
     /**
      * Get a candidate.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -76,7 +77,7 @@ class Candidates
     /**
      * Associate candidate to jobs.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -90,7 +91,7 @@ class Candidates
     /**
      * Add candidate to pools.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
@@ -104,7 +105,7 @@ class Candidates
     /**
      * Update candidate properties values.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return mixed
      */
