@@ -35,4 +35,18 @@ class Documents
             'cv' => $cv,
         ]);
     }
+
+    /**
+     * Upload a temporary document.
+     *
+     * @throws GuzzleException
+     *
+     * @return mixed
+     */
+    public function uploadTmpDoc($file)
+    {
+        return $this->client->post(self::BASE_ENDPOINT.'/tmp', [
+            'file' => $file,
+        ]);
+    }
 }

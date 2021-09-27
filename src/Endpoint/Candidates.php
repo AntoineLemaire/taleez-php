@@ -84,8 +84,20 @@ class Candidates
     public function associateJobs($candidateId, array $jobs)
     {
         return $this->client->post(sprintf(self::BASE_ENDPOINT.'/%s/jobs', $candidateId), [
-            'idListDTO' => $jobs,
+            'ids' => $jobs,
         ]);
+    }
+
+    /**
+     * Get candidate pool list.
+     *
+     * @throws GuzzleException
+     *
+     * @return mixed
+     */
+    public function getPoolList($candidateId)
+    {
+        return $this->client->get(sprintf(self::BASE_ENDPOINT.'/%s/pools', $candidateId));
     }
 
     /**
@@ -98,7 +110,7 @@ class Candidates
     public function associatPools($candidateId, array $pools)
     {
         return $this->client->post(sprintf(self::BASE_ENDPOINT.'/%s/pools', $candidateId), [
-            'idListDTO' => $pools,
+            'ids' => $pools,
         ]);
     }
 

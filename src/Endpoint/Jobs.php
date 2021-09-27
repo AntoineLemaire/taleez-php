@@ -53,6 +53,36 @@ class Jobs
     }
 
     /**
+     * Create an application for a job.
+     *
+     * @var array $application
+     *
+     * @throws GuzzleException
+     *
+     * @return mixed
+     */
+    public function createApplication($jobId, $application)
+    {
+        return $this->client->post(self::BASE_ENDPOINT.'/'.$jobId.'/applications', $application);
+    }
+
+    /**
+     * Add candidates to a job.
+     *
+     * @var array $candidatesIds
+     *
+     * @throws GuzzleException
+     *
+     * @return mixed
+     */
+    public function addCandidates($jobId, $candidatesIds)
+    {
+        return $this->client->post(self::BASE_ENDPOINT.'/'.$jobId.'/candidates', [
+            'ids' => $candidatesIds
+        ]);
+    }
+
+    /**
      * Get questions of a job.
      *
      * @throws GuzzleException

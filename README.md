@@ -1,7 +1,7 @@
 # Taleez-PHP
 
 API documentation : https://api.taleez.com/swagger-ui.html  
-Last API version: 0.1.0
+Last API version: 0.4.0
 
 ## Installation
 
