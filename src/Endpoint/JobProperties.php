@@ -5,15 +5,18 @@ namespace Taleez\Endpoint;
 use GuzzleHttp\Exception\GuzzleException;
 use Taleez\TaleezClient;
 
-class Properties
+/**
+ * Class JobProperties.
+ */
+class JobProperties
 {
-    const BASE_ENDPOINT = 'properties';
+    const BASE_ENDPOINT = 'job-properties';
 
     /** @var TaleezClient */
     private $client;
 
     /**
-     * Properties constructor.
+     * JobProperties constructor.
      */
     public function __construct(TaleezClient $client)
     {
@@ -21,7 +24,7 @@ class Properties
     }
 
     /**
-     * List available candidate properties in your company.
+     * List available job properties in your company.
      *
      * @throws GuzzleException
      *
@@ -33,5 +36,16 @@ class Properties
             'page' => $page,
             'pageSize' => $pageSize,
         ]);
+    }
+    /**
+     * Get details of a job property.
+     *
+     * @throws GuzzleException
+     *
+     * @return mixed
+     */
+    public function details($propertyId)
+    {
+        return $this->client->get(self::BASE_ENDPOINT.'/'.$propertyId);
     }
 }

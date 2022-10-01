@@ -6,8 +6,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\ResponseInterface;
+use Taleez\Endpoint\CandidateProperties;
 use Taleez\Endpoint\Candidates;
 use Taleez\Endpoint\Documents;
+use Taleez\Endpoint\JobProperties;
 use Taleez\Endpoint\Jobs;
 use Taleez\Endpoint\Pools;
 use Taleez\Endpoint\Properties;
@@ -33,8 +35,11 @@ class TaleezClient
     /** @var Pools */
     public $pools;
 
-    /** @var Properties */
-    public $properties;
+    /** @var CandidateProperties */
+    public $candidateProperties;
+
+    /** @var JobProperties */
+    public $jobProperties;
 
     /** @var Recruiters */
     public $recruiters;
@@ -68,7 +73,8 @@ class TaleezClient
         $this->documents = new Documents($this);
         $this->jobs = new Jobs($this);
         $this->pools = new Pools($this);
-        $this->properties = new Properties($this);
+        $this->candidateProperties = new CandidateProperties($this);
+        $this->jobProperties = new JobProperties($this);
         $this->recruiters = new Recruiters($this);
     }
 
